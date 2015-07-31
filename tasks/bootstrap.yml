@@ -1,5 +1,5 @@
 
-- name: Create {{ bootstrap_username }} user
+- name: Create admin user
   user: name={{ bootstrap_username }}
 
 - name: Give sudo
@@ -10,6 +10,6 @@
 
 - name: SSH key
   authorized_key: user={{ bootstrap_username }}
-                  key="{{ lookup('file', '{{ bootstrap_sshkey }}') }}"
+                  key="{{ lookup('file', bootstrap_sshkey) }}"
 
 
