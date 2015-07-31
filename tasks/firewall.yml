@@ -1,0 +1,17 @@
+- name: Enable firewall
+  service: name=firewalld state=running enabled=yes
+
+- name: Enable firewall from my ip
+  firewalld: rich_rule='rule family="ipv4"
+                        source address="{{ item[1] }}"
+                        service name="ssh" accept'
+             permanent={{ item[0] }} state=enabled
+
+  with_nested:
+  - ['yes', 'no']
+  - bootstrap_ssh_allowed_ips
+
+- name: Disable global ssh
+  firewalld: service=ssh permanent={{ item }} state=disabled
+
+  with_items: yes_no

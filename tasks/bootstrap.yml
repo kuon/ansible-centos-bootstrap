@@ -1,0 +1,15 @@
+
+- name: Create {{ bootstrap_username }} user
+  user: name={{ bootstrap_username }}
+
+- name: Give sudo
+  lineinfile: "dest=/etc/sudoers line='{{ bootstrap_username }}    ALL=(ALL)    NOPASSWD: ALL'"
+
+- name: Allow ttyless sudo
+  lineinfile: dest=/etc/sudoers regexp=requiretty state=absent
+
+- name: SSH key
+  authorized_key: user={{ bootstrap_username }}
+                  key="{{ lookup('file', '{{ bootstrap_sshkey }}') }}"
+
+
