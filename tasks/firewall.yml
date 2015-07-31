@@ -13,5 +13,4 @@
 
 - name: Disable global ssh
   firewalld: service=ssh permanent={{ item }} state=disabled
-
-  with_items: yes_no
+  with_items: ['yes', 'no']
