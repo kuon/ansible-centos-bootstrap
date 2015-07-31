@@ -17,7 +17,11 @@ Role Variables
 
 Name of admin account:
 
-`bootstrap_username` = `deploy`
+- `bootstrap_username` - The name of the user admin account, default to: `deploy`
+- `bootstrap_sshkey` - The path to the SSH key to be added for the admin user, default to: `~/.ssh/id_rsa.pub`
+- `bootstrap_default_path` - The path to be set as default: `/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin`
+- `bootstrap_ssh_allowed_ips` - An array of IPs allowed to connect via SSH, ensure this include your current IP or access to the server will be impossible avec this role has run.
+
 
 Dependencies
 ------------
@@ -73,9 +77,4 @@ Playbook:
 License
 -------
 
-BSD
-
-Author Information
-------------------
-
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+MIT
