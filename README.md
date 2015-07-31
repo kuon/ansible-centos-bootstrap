@@ -27,8 +27,8 @@ none
 Usage
 -----
 
-First pass
-~~~~~~~~~~
+1) First pass
+
 
 You must first execute the playbook with the root user and the bootstrap tag, like so:
 
@@ -46,10 +46,28 @@ Playbook:
       gather_facts: false
 
       roles:
-      - { role: kuon.centos-bootstrap, tags: ['bootstrap'] }
+      - { role: kuon.centos-bootstrap, bootstrap_operation: 'bootstrap' }
 
-Second pass
-~~~~~~~~~~~
+
+2) Second pass
+
+
+Inventory:
+
+    [somegroup]
+
+    somehost.somedomain.com
+
+
+Playbook:
+
+    - hosts: somegroup
+      remote_user: deploy
+      sudo: true
+      gather_facts: false
+
+      roles:
+      - { role: kuon.centos-bootstrap, bootstrap_operation: 'configure' }
 
 
 License
