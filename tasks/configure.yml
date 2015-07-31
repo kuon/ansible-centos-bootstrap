@@ -1,4 +1,3 @@
 - include: env.yml
 - include: firewall.yml
 - include: hostname.yml
-- include: main.yml
